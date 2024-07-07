@@ -6,7 +6,7 @@
       <p><strong>User ID:</strong> {{ user.id }}</p>
       <p><strong>Last Sign In:</strong> {{ new Date(user.last_sign_in_at).toLocaleString() }}</p>
     </div>
-    <button @click="handleSignOut" class="btn btn-danger">Sign Out</button>
+    <LogoutButton />
   </div>
 </template>
 

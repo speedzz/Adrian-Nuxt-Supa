@@ -1,75 +1,21 @@
-# Nuxt 3 Minimal Starter
+# To-do
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Login
+- [ ] Add a forgot email password flow
+- [ ] Make social login work
+- [ ] Error validation for wrong username/password
 
-## Setup
+## Sign Up
+- [ ] Add a validation for when a user is registering and the email already exist or the password is not up to standards
+- [ ] Implement email login
 
-Make sure to install the dependencies:
+## Dashboard
+- [ ] Fix the colors of the dashboard since implementing dark mode is making everything blend together
+- [ ] Fix top nav to have user profile, settings, and notification
+- [ ] Make the sidebar be on top of the topNavBar and implement the expand and collapse
+- [ ] Make sure that the sidebar is full height since right now is not the right size. 
+- [ ] Add a toggle for darkmode and light mode
+- [ ] Make the footer smaller
 
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## General
+- [ ] Look into bringing the colors i have on the figma design i am thinking that would be the "dark mode" and not the default bs color
