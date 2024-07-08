@@ -5,6 +5,9 @@
 - [ ] Make social login work
 - [ ] Error validation for wrong username/password
 
+## Top Nav
+- [ ] Make a spot in the db to upload a profile img
+
 ## Sign Up
 - [ ] Add a validation for when a user is registering and the email already exist or the password is not up to standards
 - [ ] Implement email login

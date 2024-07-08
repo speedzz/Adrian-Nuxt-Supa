@@ -1,13 +1,13 @@
 <template>
-    <div class="d-flex flex-column min-vh-100">
-      <AppHeader />
-      <div class="flex-grow-1 d-flex">
-        <AppSidebar />
+    <div class="d-flex flex-row min-vh-100">
+      <AppSidebar />
+      <div class="d-flex flex-column flex-grow-1">
+        <AppHeader />
         <main class="flex-grow-1 p-3">
           <slot />
         </main>
+        <AppFooter />
       </div>
-      <AppFooter />
     </div>
   </template>
   
