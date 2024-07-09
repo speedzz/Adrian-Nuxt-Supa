@@ -1,14 +1,14 @@
 <template>
     <div>
-      <h1 class="mb-4">Dashboard</h1>
-      <p>Welcome to your dashboard, {{ user?.email }}</p>
+      <h1 class="mb-4">Properties</h1>
+      
       <!-- Add your dashboard content here -->
     </div>
   </template>
   
   <script setup>
   definePageMeta({
-    name: 'dashboard',
+    name: 'properties',
     middleware: 'auth',
     layout: 'dashboard'
   })

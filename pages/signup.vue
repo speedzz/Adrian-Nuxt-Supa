@@ -20,24 +20,32 @@
               </form>
             </div>
             <div class="card-footer text-center">
-              <p class="m-0 py-2">Already have an account? <a href="/login">
+              <p class="m-0 py-2">Already have an account? <NuxtLink :to="{ name: 'login' }">
                 Login
-              </a></p>
+              </NuxtLink></p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </template>
+    <Modal 
+      v-model:show="showModal"
+      :type="modalType"
+      :title="modalTitle"
+      :message="modalMessage"
+      :autoClose="modalType === 'success' ? 3000 : 0"
+    />  
+</template>
   
   <script setup>
   definePageMeta({
-
+    name: 'signup'
   })
   
   const email = ref('')
   const password = ref('')
   const { signUp } = useAuth()
+  const { showModal, modalType, modalTitle, modalMessage, showSuccessModal, showErrorModal } = useModal();
   
   const handleSignUp = async () => {
     try {
@@ -46,6 +54,7 @@
     } catch (error) {
       // Handle error
       console.error('Signup failed:', error)
+      showErrorModal(error.message || 'An error occurred while signing up.');
     }
   }
   </script>

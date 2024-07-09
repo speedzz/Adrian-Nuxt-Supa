@@ -10,7 +10,7 @@
             <form @submit.prevent="handleEmailLogin">
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input v-model="email" type="email" class="form-control" id="email" required placeholder="******" />
+                <input v-model="email" type="email" class="form-control" id="email" required placeholder="example@example.com" />
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
@@ -20,27 +20,36 @@
             </form>
             <hr>
             <AuthProviderButtons />
+            
           </div>
           <div class="card-footer text-center">
-            <NuxtLink  to="/forgot-password">Forgot Password?</NuxtLink>
+            <NuxtLink :to="{ name: 'forgot-password' }">Forgot Password?</NuxtLink>
           </div>
         </div>
-        <a href="/signup" class="btn btn-success w-100 my-4">Sign Up</a>
+        <NuxtLink :to="{ name: 'signup' }" class="btn btn-success w-100 my-4">Sign Up</NuxtLink>
       </div>
     </div>
   </div>
+
+  <Modal 
+    v-model:show="showModal"
+    :type="modalType"
+    :title="modalTitle"
+    :message="modalMessage"
+    :autoClose="modalType === 'success' ? 3000 : 0"
+  />
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
-import { useCustomAuth } from "~/composables/useCustomAuth";
 
-definePageMeta({});
+definePageMeta({
+  name: 'login'
+});
 
 const email = ref("");
 const password = ref("");
 const router = useRouter();
+const { showModal, modalType, modalTitle, modalMessage, showSuccessModal, showErrorModal } = useModal();
 const { signIn, signInWithProvider } = useCustomAuth();
 
 const handleEmailLogin = async () => {
@@ -49,7 +58,8 @@ const handleEmailLogin = async () => {
     router.push("/dashboard");
   } catch (error) {
     console.error("Login failed:", error.message);
-    // Here you might want to show an error message to the user
+    showErrorModal(error.message || 'An error occurred while logging in.');
   }
 };
+
 </script>

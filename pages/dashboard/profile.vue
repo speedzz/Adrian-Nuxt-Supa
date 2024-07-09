@@ -11,28 +11,22 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { useAuth } from '~/composables/useAuth'
 
 definePageMeta({
-  middleware: 'auth'
+  name: 'profile',
+  middleware: 'auth',
+  layout: 'dashboard'
 })
 
-const { getUser, signOut } = useAuth()
-const user = ref(null)
+const authStore = useAuthStore()
+const { signOut } = useCustomAuth()
+const user = computed(() => authStore.getUser)
 
-onMounted(async () => {
-  try {
-    user.value = await getUser()
-  } catch (error) {
-    console.error('Error fetching user:', error)
-  }
-})
 
 const handleSignOut = async () => {
   try {
     await signOut()
-    navigateTo('/login')
+    navigateTo({ name: 'login' })
   } catch (error) {
     console.error('Sign out failed:', error)
   }
