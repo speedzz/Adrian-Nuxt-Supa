@@ -24,7 +24,7 @@
           <a href="/settings" class="btn btn-outline"><i class="fas fa-cog"></i></a>
           <div class="dropdown ms-2">
             <img 
-              :src="authStore.user?.profileImage || 'https://static.vecteezy.com/system/resources/thumbnails/001/840/612/small_2x/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-free-vector.jpg'" 
+              :src="authStore.user?.profileImage" 
               alt="Profile Image" 
               class="rounded-circle" 
               width="40" 

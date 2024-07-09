@@ -18,6 +18,7 @@ export const useCustomAuth = () => {
         redirectTo: `${useRuntimeConfig().public.baseUrl}/confirm`
       }
     })
+    
     if (error) throw error
     return data
   }
@@ -56,6 +57,12 @@ export const useCustomAuth = () => {
     return data.session
   }
 
+  const verifySession = async () => {
+    const { data, error } = await supabase.auth.getSession()
+    if (error) throw error
+    return data.session
+  }
+
   const resetPassword = async (newPassword: string) => {
     const { data, error } = await supabase.auth.updateUser({ password: newPassword })
     if (error) throw error
@@ -75,6 +82,7 @@ export const useCustomAuth = () => {
     signOut,
     forgotPassword,
     verifyResetSession,
-    resetPassword
+    resetPassword,
+    verifySession
   }
 }

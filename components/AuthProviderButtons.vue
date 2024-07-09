@@ -20,9 +20,12 @@
 
 <script setup>
 
+const supabase = useSupabaseClient()
+
 const signInWithProvider = async (provider) => {
   try {
-    await signInWithProvider(provider)
+    await useCustomAuth().signInWithProvider(provider)
+    
     // The user will be redirected to the provider's login page
   } catch (error) {
     console.error(`Failed to sign in with ${provider}:`, error.message)
