@@ -33,7 +33,6 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: {
-        'data-bs-theme': 'dark'
       }
     }
   }

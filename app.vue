@@ -6,9 +6,14 @@
 
 <script setup>
 import { useCustomAuth } from '~/composables/useCustomAuth'
+import { useLayoutStore } from '~/stores/layout'
 
 const { fetchUser } = useCustomAuth()
+const layoutStore = useLayoutStore()
 
-// Fetch user data on app initialization
-onMounted(fetchUser)
+// Fetch user data and initialize theme on app initialization
+onMounted(() => {
+  fetchUser()
+  layoutStore.initTheme()
+})
 </script>
