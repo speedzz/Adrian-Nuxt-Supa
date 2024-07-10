@@ -9,9 +9,14 @@ export const useAuthStore = defineStore('auth', {
   getters: {
     isAuthenticated: (state) => !!state.user,
     isEmailConfirmed: (state) => !!state.user?.email_confirmed_at,
+    getUser: (state) => state.user,
   },
   actions: {
     setUser(user) {
+      const avatarUrl = user?.user_metadata?.avatar_url || user?.user_metadata?.picture
+      if (avatarUrl) {
+        user = { ...user, profileImage: avatarUrl }
+      }
       this.user = user
     },
     setLoading(loading) {
@@ -31,6 +36,7 @@ export const useAuthStore = defineStore('auth', {
         const { data, error } = await supabase.auth.getUser()
         if (error) throw error
         this.setUser(data.user)
+        
         return data.user
       } catch (error) {
         this.setError(error.message)

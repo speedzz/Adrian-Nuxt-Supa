@@ -5,15 +5,12 @@
 </template>
 
 <script setup>
-import { useCustomAuth } from '~/composables/useCustomAuth'
-import { useLayoutStore } from '~/stores/layout'
 
 const { fetchUser } = useCustomAuth()
 const layoutStore = useLayoutStore()
 
-// Fetch user data and initialize theme on app initialization
+// Fetch user data 
 onMounted(() => {
   fetchUser()
-  layoutStore.initTheme()
 })
 </script>

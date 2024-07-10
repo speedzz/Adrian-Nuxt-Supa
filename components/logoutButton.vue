@@ -1,7 +1,5 @@
 <template>
-  <div>
     <a @click="handleSignOut" class="btn btn-danger">Logout</a>
-  </div>
 </template>
 
 <script lang="ts" setup>
@@ -11,7 +9,7 @@
 const handleSignOut = async () => {
   try {
     await signOut()
-    navigateTo('/login')
+    navigateTo({ name: 'login' })
   } catch (error) {
     console.error('Sign out failed:', error)
   }
@@ -20,6 +18,5 @@ const handleSignOut = async () => {
 </script>
 
 <style>
-
 
 </style>

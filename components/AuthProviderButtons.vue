@@ -2,16 +2,16 @@
  <div class="mt-3">
   <p>Social login:</p>
   <div class="d-flex gap-2">
-    <button @click="() => signInWithProvider('github')" :class="['btn', `btn-outline-${layoutStore.theme === 'dark' ? 'dark' : 'light'}`, 'mb-2', 'w-100']">
+    <button @click="() => signInWithProvider('github')" class="btn btn-outline mb-2 w-100">
       <i class="fab fa-github"></i>
     </button>
-    <button @click="() => signInWithProvider('google')" :class="['btn', `btn-outline-${layoutStore.theme === 'dark' ? 'dark' : 'light'}`, 'mb-2', 'w-100']">
+    <button @click="() => signInWithProvider('google')" class="btn btn-outline mb-2 w-100">
       <i class="fab fa-google"></i>
     </button>
-    <button @click="() => signInWithProvider('facebook')" :class="['btn', `btn-outline-${layoutStore.theme === 'dark' ? 'dark' : 'light'}`, 'mb-2', 'w-100']">
+    <button @click="() => signInWithProvider('facebook')" class="btn btn-outline mb-2 w-100">
       <i class="fab fa-facebook-f"></i>
     </button>
-    <button @click="() => signInWithProvider('apple')" :class="['btn', `btn-outline-${layoutStore.theme === 'dark' ? 'dark' : 'light'}`, 'mb-2', 'w-100']">
+    <button @click="() => signInWithProvider('apple')" class="btn btn-outline mb-2 w-100">
       <i class="fab fa-apple"></i>
     </button>
   </div>
@@ -19,23 +19,12 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
-import { useLayoutStore } from '~/stores/layout'
 
 const supabase = useSupabaseClient()
-const router = useRouter()
-const layoutStore = useLayoutStore()
 
 const signInWithProvider = async (provider) => {
   try {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider,
-      options: {
-        redirectTo: `${window.location.origin}/confirm`
-      }
-    })
-    
-    if (error) throw error
+    await useCustomAuth().signInWithProvider(provider)
     
     // The user will be redirected to the provider's login page
   } catch (error) {

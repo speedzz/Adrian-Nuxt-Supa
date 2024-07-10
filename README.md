@@ -1,17 +1,17 @@
 ## Adrian
-- [ ] 🪲 Fix the dark mode bug. Maybe look into adding it to the local storage and have the code start the colro based on that. Right now is having issues 🪲🪲
+- [x] 🪲 Fix the dark mode bug. Maybe look into adding it to the local storage and have the code start the colro based on that. Right now is having issues 🪲🪲
 
 ------------
 
 ## Eddie
-- [ ] The logout in the appHeader is broken
+- [x] The logout in the appHeader is broken
 
 
 ------------
 # To-do
 
 ### Login
-- [ ] Add a forgot email password flow
+- [x] Add a forgot email password flow
 - [x] Make social login work
 - [ ] Error validation for wrong username/password
 
@@ -23,7 +23,7 @@
 - [x] Implement email login
 
 ### Dashboard
-- [ ] 🪲Fix the colors of the dashboard since implementing dark mode is making everything blend together
+- [x] 🪲Fix the colors of the dashboard since implementing dark mode is making everything blend together
 - [x] Fix top nav to have user profile, settings, and notification
 - [x] Make the sidebar be on top of the topNavBar and implement the expand and collapse
 - [x] Make sure that the sidebar is full height since right now is not the right size. 

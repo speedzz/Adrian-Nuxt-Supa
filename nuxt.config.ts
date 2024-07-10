@@ -3,10 +3,15 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: [
     '@pinia/nuxt',
-    '@nuxtjs/supabase'
+    '@nuxtjs/supabase',
+    '@nuxtjs/color-mode'
   ],
+  colorMode: { 
+    dataValue: 'bs-theme',
+    preference: 'dark'
+  },
   css: [
-    'bootstrap/dist/css/bootstrap.min.css',
+    '@/assets/scss/main.scss',
     '@fortawesome/fontawesome-free/css/all.min.css'
   ],
   supabase: {
@@ -14,7 +19,7 @@ export default defineNuxtConfig({
     redirectOptions: {
       login: '/login',
       callback: '/confirm',
-      exclude: ['/', '/signup'],
+      exclude: ['/', '/signup', '/forgot-password', '/reset-password'],
     },
     cookieOptions: {
       maxAge: 60 * 60 * 8,

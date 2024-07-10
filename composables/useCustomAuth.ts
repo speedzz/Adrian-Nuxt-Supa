@@ -11,13 +11,14 @@ export const useCustomAuth = () => {
     return data
   }
 
-  const signInWithProvider = async (provider: 'github' | 'google') => {
+  const signInWithProvider = async (provider: 'github' | 'google' | 'facebook' | 'apple') => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider,
       options: {
         redirectTo: `${useRuntimeConfig().public.baseUrl}/confirm`
       }
     })
+    
     if (error) throw error
     return data
   }
@@ -40,6 +41,34 @@ export const useCustomAuth = () => {
     authStore.setUser(null)
   }
 
+  const forgotPassword = async (email: string) => {
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${useRuntimeConfig().public.baseUrl}/reset-password`,
+    })
+    if (error) throw error
+    return data
+  }
+
+  const verifyResetSession = async () => {
+    const { data, error } = await supabase.auth.getSession()
+    if (error || !data.session) {
+      throw new Error('No valid reset session found')
+    }
+    return data.session
+  }
+
+  const verifySession = async () => {
+    const { data, error } = await supabase.auth.getSession()
+    if (error) throw error
+    return data.session
+  }
+
+  const resetPassword = async (newPassword: string) => {
+    const { data, error } = await supabase.auth.updateUser({ password: newPassword })
+    if (error) throw error
+    return data
+  }
+
   return {
     user: computed(() => authStore.user),
     isAuthenticated: computed(() => authStore.isAuthenticated),
@@ -51,5 +80,9 @@ export const useCustomAuth = () => {
     signInWithProvider,
     signUp,
     signOut,
+    forgotPassword,
+    verifyResetSession,
+    resetPassword,
+    verifySession
   }
 }
