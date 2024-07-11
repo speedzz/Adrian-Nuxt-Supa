@@ -13,7 +13,7 @@
 <script setup>
 
 definePageMeta({
-  name: 'profile',
+  name: 'userProfile',
   middleware: 'auth',
   layout: 'dashboard'
 })

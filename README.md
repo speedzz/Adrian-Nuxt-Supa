@@ -1,18 +1,25 @@
 ## Adrian
-- [x] 🪲 Fix the dark mode bug. Maybe look into adding it to the local storage and have the code start the colro based on that. Right now is having issues 🪲🪲
+- [ ] Make the user profile page, where users can upload a new image
+- [ ] save the default avatar image to the static asset
+- [ ] make the user management page that will show all the user, their roles and what pages they can view (this is a admin only page)
+- [ ] Work on the product hunt description
+- [ ] Make other product launch materials like documentation, socials and anything else that is applicablea
 
 ------------
 
 ## Eddie
-- [x] The logout in the appHeader is broken
+- [ ] appSide, change the name to routeName
+- [ ] appSide, change it so that IF route doesnt exist it still shows but onClick it does error
+- [ ] User permission and roles
+- [ ] move the signup into the right folder
+
+
 
 
 ------------
 # To-do
 
 ### Login
-- [x] Add a forgot email password flow
-- [x] Make social login work
 - [ ] Error validation for wrong username/password
 
 ### Top Nav
@@ -20,15 +27,4 @@
 
 ### Sign Up
 - [ ] Add a validation for when a user is registering and the email already exist or the password is not up to standards
-- [x] Implement email login
 
-### Dashboard
-- [x] 🪲Fix the colors of the dashboard since implementing dark mode is making everything blend together
-- [x] Fix top nav to have user profile, settings, and notification
-- [x] Make the sidebar be on top of the topNavBar and implement the expand and collapse
-- [x] Make sure that the sidebar is full height since right now is not the right size. 
-- [x] 🪲Add a toggle for darkmode and light mode
-- [ ] Make the footer smaller
-
-### General
-- [x] Look into bringing the colors i have on the figma design i am thinking that would be the "dark mode" and not the default bs color

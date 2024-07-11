@@ -46,17 +46,13 @@ const route = useRoute()
 
 const menuItems = ref([
   { header: 'Main Menu' },
-  { name: 'Dashboard', to: { name: 'dashboard' }, icon: 'fas fa-home me-2' },
-  { name: 'Profile', to: { name: 'profile' }, icon: 'fas fa-user me-2' },
+    { name: 'Dashboard', to: { name: 'dashboard' }, icon: 'fas fa-home me-2' },
+    // 
   { divider: true },
+    // 
   { header: 'Settings' },
-  {
-    name: 'Settings',
-    icon: 'fas fa-cog me-2',
-    children: [
-      { name: 'Properties', to: { name: 'properties' }, icon: 'fas fa-sign-out-alt me-2' }
-    ]
-  }
+    { name: 'User Profile', to: { name: 'userProfile' }, icon: 'fas fa-user me-2' },
+
 ])
 
 const isActiveRoute = (item) => {
