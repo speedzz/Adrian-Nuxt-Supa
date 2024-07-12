@@ -1,15 +1,17 @@
 <template>
   <div :class="['sidebar', { 'sidebar-open': layoutStore.sidebarOpen }]" class="flex-column flex-shrink-0 border-end">
     <div class="mb-5">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
-      <span class="fs-4">Logo</span>
+    <a href="/dashboard" class="d-flex justify-content-center align-items-center text-decoration-none mt-3">
+      <h2>Logo</h2>
     </a>
     </div>
     
-    <ul class="nav nav-pills flex-column mb-auto">
+    <ul class="nav nav-pills flex-column">
       <template v-for="item in menuItems" :key="item.name">
         <li v-if="item.header" class="nav-header">{{ item.header }}</li>
-        <li v-else-if="item.divider" class="nav-divider"><hr></li>
+        <li v-else-if="item.divider" class="nav-divider">
+          <hr class="mx-3">
+        </li>
         <li v-else class="nav-item">
           <div v-if="item.children" @click="toggleDropdown(item)" class="nav-link d-flex justify-content-between align-items-center" :class="{ 'active': isActiveRoute(item) }">
             <div>
@@ -22,7 +24,7 @@
             <i :class="item.icon"></i>
             {{ item.name }}
           </NuxtLink>
-          <ul v-if="item.children && item.isOpen" class="nav flex-column ms-3">
+          <ul v-if="item.children && item.isOpen" class="nav flex-column">
             <li v-for="child in item.children" :key="child.name" class="nav-item">
               <NuxtLink :to="child.to" class="nav-link" :class="{ 'active': isActiveRoute(child) }">
                 <i :class="child.icon"></i>
@@ -52,6 +54,7 @@ const menuItems = ref([
     // 
   { header: 'Settings' },
     { name: 'User Profile', to: { name: 'userProfile' }, icon: 'fas fa-user me-2' },
+    { name: 'User Management', to: { name: 'userManagement' }, icon: 'fas fa-users me-2' },
 
 ])
 

@@ -1,9 +1,7 @@
 ## Adrian
-- [ ] Make the user profile page, where users can upload a new image
-- [ ] save the default avatar image to the static asset
-- [ ] make the user management page that will show all the user, their roles and what pages they can view (this is a admin only page)
 - [ ] Work on the product hunt description
 - [ ] Make other product launch materials like documentation, socials and anything else that is applicablea
+- [ ] Make sure that the table follow the style of dark mode or light mode
 
 ------------
 
@@ -12,17 +10,15 @@
 - [ ] appSide, change it so that IF route doesnt exist it still shows but onClick it does error
 - [ ] User permission and roles
 - [ ] move the signup into the right folder
+- [ ] Make the user profile, user avatar work with the upload
+- [ ] make the user management page that will show all the user, their roles and what pages they can view (this is a admin only page)
+
 
 
 
 
 ------------
 # To-do
-
-### Login
-- [ ] Error validation for wrong username/password
-
-### Top Nav
 - [ ] Make a spot in the db to upload a profile img
 
 ### Sign Up

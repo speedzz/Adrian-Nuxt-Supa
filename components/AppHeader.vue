@@ -1,5 +1,5 @@
 <template>
-  <div class="py-1 border-bottom ">  
+  <div class="py-1 border-bottom">
     <header class="navbar">
       <div class="container-fluid d-flex justify-content-between align-items-center">
         <button class="btn btn-outline" @click="layoutStore.toggleSidebar">
@@ -23,20 +23,10 @@
           </div>
           <a href="/settings" class="btn btn-outline"><i class="fas fa-cog"></i></a>
           <div class="dropdown ms-2">
-            <img 
-              :src="authStore.user?.profileImage" 
-              alt="Profile Image" 
-              class="rounded-circle" 
-              width="40" 
-              height="40"
-              role="button"
-              id="profileDropdown"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
+            <img :src="authStore.user?.profileImage || '/profilePlace.png'" alt="Profile Image" class="rounded-circle" width="40" height="40" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" />
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-              <li><a class="dropdown-item" href="/profile">Profile</a></li>
-              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/dashboard/userProfile">Profile</a></li>
+              <li><hr class="dropdown-divider" /></li>
               <li><a class="dropdown-item" href="#" @click.prevent="handleSignOut">Logout</a></li>
             </ul>
           </div>
@@ -47,25 +37,21 @@
 </template>
 
 <script setup>
-const { signOut } = useCustomAuth()
-const authStore = useAuthStore()
-const layoutStore = useLayoutStore()
-const colorMode = useColorMode()
+const { signOut } = useCustomAuth();
+const authStore = useAuthStore();
+const layoutStore = useLayoutStore();
+const colorMode = useColorMode();
 
-onMounted(() => {
-  
-})
+onMounted(() => {});
 
 const handleSignOut = async () => {
   try {
-    await signOut()
-    navigateTo({ name: 'login' })
+    await signOut();
+    navigateTo({ name: "login" });
   } catch (error) {
-    console.error('Sign out failed:', error)
+    console.error("Sign out failed:", error);
   }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
