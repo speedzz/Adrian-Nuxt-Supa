@@ -1,13 +1,13 @@
 <template>
   <div :class="['sidebar', { 'sidebar-open': layoutStore.sidebarOpen }]" class="flex-column flex-shrink-0 border-end">
     <div class="mb-5">
-    <a href="/dashboard" class="d-flex justify-content-center align-items-center text-decoration-none mt-3">
-      <h2>Logo</h2>
-    </a>
+      <NuxtLink :to="{ name: 'dashboard' }" class="d-flex justify-content-center align-items-center text-decoration-none mt-3">
+        <h2>Logo</h2>
+      </NuxtLink>
     </div>
     
     <ul class="nav nav-pills flex-column">
-      <template v-for="item in menuItems" :key="item.name">
+      <template v-for="item in menuItemsStore.menu" :key="item.name">
         <li v-if="item.header" class="nav-header">{{ item.header }}</li>
         <li v-else-if="item.divider" class="nav-divider">
           <hr class="mx-3">
@@ -20,13 +20,13 @@
             </div>
             <i class="fas" :class="{'fa-chevron-down': !item.isOpen, 'fa-chevron-up': item.isOpen}"></i>
           </div>
-          <NuxtLink v-else :to="item.to" class="nav-link" :class="{ 'active': isActiveRoute(item) }">
+          <NuxtLink v-else :to="getRouteOrFallback(item.to)" class="nav-link" :class="{ 'active': isActiveRoute(item) }">
             <i :class="item.icon"></i>
             {{ item.name }}
           </NuxtLink>
           <ul v-if="item.children && item.isOpen" class="nav flex-column">
             <li v-for="child in item.children" :key="child.name" class="nav-item">
-              <NuxtLink :to="child.to" class="nav-link" :class="{ 'active': isActiveRoute(child) }">
+              <NuxtLink :to="getRouteOrFallback(child.to)" class="nav-link" :class="{ 'active': isActiveRoute(child) }">
                 <i :class="child.icon"></i>
                 {{ child.name }}
               </NuxtLink>
@@ -39,24 +39,11 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRoute } from 'vue-router'
-import { useLayoutStore } from '@/stores/layout'
 
 const layoutStore = useLayoutStore()
 const route = useRoute()
-
-const menuItems = ref([
-  { header: 'Main Menu' },
-    { name: 'Dashboard', to: { name: 'dashboard' }, icon: 'fas fa-home me-2' },
-    // 
-  { divider: true },
-    // 
-  { header: 'Settings' },
-    { name: 'User Profile', to: { name: 'userProfile' }, icon: 'fas fa-user me-2' },
-    { name: 'User Management', to: { name: 'userManagement' }, icon: 'fas fa-users me-2' },
-
-])
+const router = useRouter()
+const menuItemsStore = useMenuItemsStore()
 
 const isActiveRoute = (item) => {
   if (item.children) {
@@ -73,6 +60,25 @@ const toggleDropdown = (item) => {
   if (item.children) {
     item.isOpen = !item.isOpen
   }
+}
+
+const getRouteOrFallback = (to) => {
+  if (typeof to === 'string') {
+    return to
+  }
+  
+  if (to && to.name) {
+    const routeExists = router.hasRoute(to.name)
+    if (routeExists) {
+      return to
+    } else {
+      // If the route doesn't exist, use a hash-based fallback
+      return { path: '#' + to.name }
+    }
+  }
+  
+  // Default fallback if 'to' is not properly defined
+  return '#'
 }
 </script>
 

@@ -6,8 +6,8 @@
 ------------
 
 ## Eddie
-- [ ] appSide, change the name to routeName
-- [ ] appSide, change it so that IF route doesnt exist it still shows but onClick it does error
+-  appSide, change the name to routeName - (it has to be name).
+- [x] appSide, change it so that IF route doesnt exist it still shows but onClick it does error
 - [ ] User permission and roles
 - [ ] move the signup into the right folder
 - [ ] Make the user profile, user avatar work with the upload

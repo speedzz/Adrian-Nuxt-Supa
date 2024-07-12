@@ -7,13 +7,13 @@ export default defineNuxtRouteMiddleware(async (to) => {
   await fetchUser()
 
   // If the user is not authenticated and is trying to access a protected route
-  if (!isAuthenticated && to.path !== '/login' && to.path !== '/signup' && to.path !== '/confirm') {
+  if (!isAuthenticated && to.name !== 'login' && to.name !== 'signup' && to.name !== 'confirm') {
     // Redirect to login page
     return navigateTo({ name: 'login' })
   }
 
   // If the user is authenticated and trying to access login or signup pages
-  if (isAuthenticated && (to.path === '/login' || to.path === '/signup')) {
+  if (isAuthenticated && (to.name === 'login' || to.name === 'signup')) {
     // Redirect to dashboard or home page
     return navigateTo({ name: 'dashboard' })
   }
