@@ -5,7 +5,7 @@
         <button class="btn btn-outline" @click="layoutStore.toggleSidebar">
           <i class="fas fa-bars"></i>
         </button>
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center pe-4">
           <ClientOnly>
             <button class="btn btn-outline me-3" @click="colorMode.preference = colorMode.preference === 'dark' ? 'light' : 'dark'">
               <i :class="colorMode.preference === 'dark' ? 'fas fa-moon' : 'fas fa-sun'"></i>
@@ -21,7 +21,6 @@
               <li><a class="dropdown-item" href="#">Notification 3</a></li>
             </ul>
           </div>
-          <a href="/settings" class="btn btn-outline"><i class="fas fa-cog"></i></a>
           <div class="dropdown ms-2">
             <img :src="authStore.user?.profileImage || '/profilePlace.png'" alt="Profile Image" class="rounded-circle" width="40" height="40" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" />
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">

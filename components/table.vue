@@ -1,22 +1,23 @@
 <template>
   <div class="card">
-    <div class="card-header d-flex justify-content-between align-items-center">
-      <h3 class="card-title">User Table</h3>
+    <div class="py-2 ps-3 d-flex justify-content-between align-items-center">
+      <h3 class="card-title">{{ title }}</h3>
       <div class="d-flex">
-        <input type="text" class="form-control d-inline-block" placeholder="Search...">
+        <input type="text" class="form-control d-inline-block" placeholder="Search..." v-model="searchQuery" @input="updateTable">
         <button class="btn btn-primary mx-2">
           <i class="fa-solid fa-plus"></i>
         </button>
       </div>
     </div>
-    <div class="card-body">
-      <table class="table table-striped table-hover table-bordered">
+    <div class="card-body p-0">
+      <table class="table table-striped table-hover table-bordered m-0" v-if="paginatedData.length">
         <thead>
           <tr>
             <th @click="sortTable('name')">Name</th>
             <th @click="sortTable('email')">Email</th>
             <th @click="sortTable('role')">Role</th>
             <th @click="sortTable('provider')">Provider</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -25,9 +26,16 @@
             <td>{{ user.email }}</td>
             <td>{{ user.role }}</td>
             <td>{{ user.provider }}</td>
+            <td style="width: 100px;">
+              <button class="btn btn-outline"><i class="fas fa-pencil"></i></button>
+              <button class="btn btn-outline"><i class="fas fa-trash"></i></button>
+            </td>
           </tr>
         </tbody>
       </table>
+      <div v-else class="no-data">
+        No data match search
+      </div>
     </div>
     <div class="card-footer d-flex justify-content-end">
       <button class="btn btn-secondary" @click="prevPage" :disabled="currentPage === 1">Previous</button>
@@ -42,7 +50,15 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
+import { defineProps } from 'vue';
+
+const props = defineProps({
+  title: {
+    type: String,
+    required: true
+  }
+});
 
 const users = ref([
   { id: 1, name: 'John Doe', email: 'john.doe@example.com', role: 'Admin', provider: 'Google' },
@@ -68,8 +84,9 @@ const filteredData = computed(() => {
 
 const sortedData = computed(() => {
   return filteredData.value.sort((a, b) => {
-    if (a[sortKey.value] < b[sortKey.value]) return -1 * sortOrder.value;
-    if (a[sortKey.value] > b[sortKey.value]) return 1 * sortOrder.value;
+    const key = sortKey.value as keyof typeof a;
+    if (a[key] < b[key]) return -1 * sortOrder.value;
+    if (a[key] > b[key]) return 1 * sortOrder.value;
     return 0;
   });
 });
@@ -84,7 +101,7 @@ const totalPages = computed(() => {
   return Math.ceil(filteredData.value.length / itemsPerPage);
 });
 
-const sortTable = (key) => {
+const sortTable = (key: string) => {
   if (sortKey.value === key) {
     sortOrder.value = -sortOrder.value;
   } else {
@@ -105,9 +122,15 @@ const nextPage = () => {
   }
 };
 
-const goToPage = (page) => {
+const goToPage = (page: number) => {
   currentPage.value = page;
 };
+
+const updateTable = () => {
+  currentPage.value = 1;
+};
+
+watch(searchQuery, updateTable);
 </script>
 
 <style>
@@ -138,5 +161,14 @@ const goToPage = (page) => {
 .pagination-buttons {
   display: flex;
   align-items: center;
+}
+
+.no-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 1.2em;
+  color: #888;
 }
 </style>

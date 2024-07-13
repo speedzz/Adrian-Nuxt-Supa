@@ -3,8 +3,8 @@
     <div class="row justify-content-center align-items-center vh-100">
       <div class="col-md-3">
         <div class="card">
-          <div class="card-header">
-            <h5 class="m-0 py-2">Login</h5>
+          <div class="py-3 ps-3 border-bottom">
+            <h5 class="m-0">Login</h5>
           </div>
           <div class="card-body">
             <form @submit.prevent="handleEmailLogin">

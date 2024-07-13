@@ -13,7 +13,7 @@ const mainMenuItems: MenuItem[] = [
 const settingsMenuItems: MenuItem[] = [
   { name: 'User Profile', to: { name: 'userProfile' }, icon: 'fas fa-user me-2' },
   { name: 'User Management', to: { name: 'userManagement' }, icon: 'fas fa-users me-2' },
-  { name: 'Role Management', to: { name: 'roleManagement' }, icon: 'fas fa-users me-2' },
+  { name: 'Role Management', to: { name: 'roleManagement' }, icon: 'fas fa-user-shield me-2' },
 ];
 
 export const useMenuItemsStore = defineStore('menuItems', {

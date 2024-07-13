@@ -2,16 +2,16 @@
  <div class="mt-3">
   <p>Social login:</p>
   <div class="d-flex gap-2">
-    <button @click="() => signInWithProvider('github')" class="btn btn-outline mb-2 w-100">
+    <button @click="() => signInWithProvider('github')" class="btn btn-outline-secondary mb-2 w-100">
       <i class="fab fa-github"></i>
     </button>
-    <button @click="() => signInWithProvider('google')" class="btn btn-outline mb-2 w-100">
+    <button @click="() => signInWithProvider('google')" class="btn btn-outline-secondary mb-2 w-100">
       <i class="fab fa-google"></i>
     </button>
-    <button @click="() => signInWithProvider('facebook')" class="btn btn-outline mb-2 w-100">
+    <button @click="() => signInWithProvider('facebook')" class="btn btn-outline-secondary mb-2 w-100">
       <i class="fab fa-facebook-f"></i>
     </button>
-    <button @click="() => signInWithProvider('apple')" class="btn btn-outline mb-2 w-100">
+    <button @click="() => signInWithProvider('apple')" class="btn btn-outline-secondary mb-2 w-100">
       <i class="fab fa-apple"></i>
     </button>
   </div>

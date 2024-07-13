@@ -1,16 +1,17 @@
 <template>
-  <div class="ps-5">
-    <Table />
+  <div class="px-5">
+    <Table title="Users Management" />
   </div>
 </template>
 
 <script setup>
-import Table from '@/components/table.vue'
+import Table from '~/components/Table.vue'
 
 definePageMeta({
   name: 'userManagement',
   middleware: 'auth',
-  layout: 'dashboard'
+  layout: 'dashboard',
+  role: 'admin'
 })
 
 const authStore = useAuthStore()
