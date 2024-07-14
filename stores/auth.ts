@@ -1,7 +1,14 @@
 import { defineStore } from 'pinia'
+import type { User } from '@supabase/supabase-js'
+
+interface AuthState {
+  user: (User & { profileImage?: string; provider: string }) | null
+  loading: boolean
+  error: string | null
+}
 
 export const useAuthStore = defineStore('auth', {
-  state: () => ({
+  state: (): AuthState => ({
     user: null,
     loading: false,
     error: null,
@@ -12,17 +19,17 @@ export const useAuthStore = defineStore('auth', {
     getUser: (state) => state.user,
   },
   actions: {
-    setUser(user) {
-      const avatarUrl = user?.user_metadata?.avatar_url || user?.user_metadata?.picture
-      if (avatarUrl) {
-        user = { ...user, profileImage: avatarUrl }
-      }
-      this.user = user
+    setUser(user: User | null) {
+      this.user = user ? {
+        ...user,
+        profileImage: user.user_metadata?.avatar_url || user.user_metadata?.picture,
+        provider: user.app_metadata?.provider || ''
+      } : null
     },
-    setLoading(loading) {
+    setLoading(loading: boolean) {
       this.loading = loading
     },
-    setError(error) {
+    setError(error: string | null) {
       this.error = error
     },
     async fetchUser() {
@@ -38,8 +45,8 @@ export const useAuthStore = defineStore('auth', {
         this.setUser(data.user)
         
         return data.user
-      } catch (error) {
-        this.setError(error.message)
+      } catch (error: unknown) {
+        this.setError(error instanceof Error ? error.message : 'An unknown error occurred')
         this.setUser(null)
       } finally {
         this.setLoading(false)

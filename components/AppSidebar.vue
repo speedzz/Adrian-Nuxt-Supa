@@ -1,9 +1,10 @@
 <template>
   <div :class="['sidebar', { 'sidebar-open': layoutStore.sidebarOpen }]" class="flex-column flex-shrink-0 border-end">
-    <div class="mb-5">
+    <div>
       <NuxtLink :to="{ name: 'dashboard' }" class="d-flex justify-content-center align-items-center text-decoration-none mt-3">
         <h2>Logo</h2>
       </NuxtLink>
+      <hr class="mx-3">
     </div>
     
     <ul class="nav nav-pills flex-column">
