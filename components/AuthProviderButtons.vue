@@ -1,7 +1,7 @@
 <template>
  <div class="mt-3">
   <p>Social login:</p>
-  <div class="d-flex gap-2">
+  <div class="d-flex flex-sm-wrap flex-lg-nowrap gap-2">
     <button @click="() => signInWithProvider('github')" class="btn btn-outline-secondary mb-2 w-100">
       <i class="fab fa-github"></i>
     </button>
